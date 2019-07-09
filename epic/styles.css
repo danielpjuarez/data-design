@@ -1,0 +1,8 @@
+body {
+padding: 20px;
+width: 25em;
+resize: horizontal;
+overflow: auto;
+color: yellow;
+background-color: lightblue
+}
