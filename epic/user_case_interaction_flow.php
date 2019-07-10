@@ -11,9 +11,15 @@
 		<p>
 			Rob's search for memes has brought him to the login screen of Reddit.
 			He wants to get to his personal feed of subreddits so he can look at memes.
-			Assuming that a secure login system has been built, with the end condition of getting to his personal feed,
+			<br>
+			Precondition: Rob has signed up for subreddit subscriptions and a reddit account.
+			<br>
+			End condition: His personal feed loads successfully.
 		</p>
 		<ol>
+			<li>
+				He navigates to the login screen
+			</li>
 			<li>
 				He places his cursor in the login bar
 			</li>
@@ -24,7 +30,7 @@
 				He presses the "enter" button
 			</li>
 			<li>
-				He clicks on his profile's home button to bring up his personalized feed
+				The website recognizes the click of the login button, and serves up his homepage, which contains his personal feed
 			</li>
 			<li>
 				He can now browse through memes until he is content
