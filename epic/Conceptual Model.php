@@ -15,7 +15,7 @@
 				profileId (primary key)
 			</li>
 			<li>profileHandle</li>
-			<li>profileUsernmae</li>
+			<li>profileUsername</li>
 			<li>profilePassword</li>
 		</ul>
 		<h5>Subreddits</h5>
@@ -25,9 +25,9 @@
 		</ul>
 		<h5>Subscriptions</h5>
 		<ul>
-			<li>subId (foreign key)</li>
-			<li>profileId (foreign key)</li>
-		</ul>
+			<li>subscriptionProfileId (foreign key)</li>
+			<li>subscriptionSubredditId (foreign key)</li>
+					</ul>
 	<h4>Relations</h4>
 		<ul>
 			<li>One profile can optionally have many subscriptions (1 to n)</li>
