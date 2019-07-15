@@ -15,47 +15,35 @@ CREATE TABLE profile (
 	-- this creates the attribute for the primary key
 	-- not null means the attribute is required!
 	profileId BINARY(16) NOT NULL,
-	profileHandle VARCHAR (32),
-	profileAtHandle VARCHAR(32) NOT NULL,
-	profileEmail VARCHAR(128) NOT NULL,
+	profileHandle VARCHAR (32) NOT NULL,
+	profileUsername VARCHAR(128) NOT NULL,
 	-- to make something optional, exclude the not null
 	profileHash CHAR(97) NOT NULL,
 	profilePhone VARCHAR(32),
 	-- to make sure duplicate data cannot exist, create a unique index
-	UNIQUE(profileAtHandle),
-	UNIQUE(profileEmail),
+	UNIQUE(profileHandle),
 	-- this officiates the primary key for the entity
 	PRIMARY KEY(profileId)
 );
 
 -- create the tweet entity
-CREATE TABLE tweet (
+CREATE table subreddit (
 	-- this is for yet another primary key...
-	tweetId BINARY(16) NOT NULL,
-	-- this is for a foreign key
-	tweetProfileId BINARY(16) NOT NULL,
-	tweetContent VARCHAR(140) NOT NULL,
-	tweetDate DATETIME(6) NOT NULL,
-	-- this creates an index before making a foreign key
-	INDEX(tweetProfileId),
-	-- this creates the actual foreign key relation
-	FOREIGN KEY(tweetProfileId) REFERENCES profile(profileId),
-	-- and finally create the primary key
-	PRIMARY KEY(tweetId)
+	subRedditID BINARY(16) NOT NULL,
+	subRedditName VARCHAR(21) NOT NULL
 );
 
--- create the like entity (a weak entity from an m-to-n for profile --> tweet)
-CREATE TABLE `like` (
-	-- these are still foreign keys
-	likeProfileId BINARY(16) NOT NULL,
-	likeTweetId BINARY(16) NOT NULL,
-	likeDate DATETIME(6) NOT NULL,
+-- create the like entity (a weak entity from a 1-n for profile--> subscriptions and a
+-- weak entity from 1-n for subreddit--> subscriptions)
+CREATE TABLE subscriptions (
+	subscriptionProfileId BINARY (16) NOT NULL,
+	subscriptionSubredditId BINARY (15) NOT NULL,
 	-- index the foreign keys
-	INDEX(likeProfileId),
-	INDEX(likeTweetId),
+	INDEX(subscriptionProfileId),
+	INDEX(subscriptionSubredditId),
 	-- create the foreign key relations
-	FOREIGN KEY(likeProfileId) REFERENCES profile(profileId),
-	FOREIGN KEY(likeTweetId) REFERENCES tweet(tweetId),
+	FOREIGN KEY(subscriptionProfileId) REFERENCES profile(profileId),
+	FOREIGN KEY(subscriptionSubredditId) REFERENCES subreddit(subredditId),
 	-- finally, create a composite foreign key with the two foreign keys
-	PRIMARY KEY(likeProfileId, likeTweetId)
+	PRIMARY KEY(subscriptionProfileId, subscriptionSubredditId)
 );
