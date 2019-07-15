@@ -19,9 +19,9 @@ CREATE TABLE profile (
 	profileUsername VARCHAR(128) NOT NULL,
 	-- to make something optional, exclude the not null
 	profileHash CHAR(97) NOT NULL,
-	profilePhone VARCHAR(32),
-	-- to make sure duplicate data cannot exist, create a unique index
+		-- to make sure duplicate data cannot exist, create a unique index
 	UNIQUE(profileHandle),
+	UNIQUE (profileUsername),
 	-- this officiates the primary key for the entity
 	PRIMARY KEY(profileId)
 );
@@ -29,8 +29,10 @@ CREATE TABLE profile (
 -- create the tweet entity
 CREATE table subreddit (
 	-- this is for yet another primary key...
-	subRedditID BINARY(16) NOT NULL,
-	subRedditName VARCHAR(21) NOT NULL
+	subredditId BINARY(16) NOT NULL,
+	subredditName VARCHAR(21) NOT NULL,
+-- to make sure duplicate data cannot exist, create a unique index
+	UNIQUE(subredditId)
 );
 
 -- create the like entity (a weak entity from a 1-n for profile--> subscriptions and a
