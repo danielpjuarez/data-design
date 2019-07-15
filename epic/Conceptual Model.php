@@ -16,7 +16,7 @@
 			</li>
 			<li>profileHandle</li>
 			<li>profileUsername</li>
-			<li>profilePassword</li>
+			<li>profileHash</li>
 		</ul>
 		<h5>Subreddits</h5>
 		<ul>
